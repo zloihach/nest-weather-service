@@ -11,5 +11,17 @@ services:
       - '5433:5432'
     volumes:
       - db:/var/lib/postgresql/data
+
+  weather-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    environment:
+      DATABASE_URL: postgresql://postgres:password@weather-db:5432/postgres
+    depends_on:
+      - weather-db
+
 volumes:
   db:
