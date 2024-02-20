@@ -1,0 +1,11 @@
+-- CreateTable
+CREATE TABLE "WeatherData" (
+    "id" SERIAL NOT NULL,
+    "temperature" DOUBLE PRECISION NOT NULL,
+    "humidity" DOUBLE PRECISION NOT NULL,
+    "light" DOUBLE PRECISION NOT NULL,
+    "pressure" DOUBLE PRECISION NOT NULL,
+    "date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "WeatherData_pkey" PRIMARY KEY ("id")
+);
