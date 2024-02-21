@@ -30,4 +30,10 @@ export class WeatherService {
       },
     });
   }
+
+  async findById(id: string) {
+    return this.db.weatherData.findUnique({
+      where: { id: Number(id) },
+    });
+  }
 }
