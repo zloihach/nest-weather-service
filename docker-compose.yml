@@ -7,10 +7,16 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: weatherdb  # Добавляем имя новой базы данных
     ports:
       - '5432:5432'
     volumes:
       - db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   weather-app:
     build:
@@ -19,9 +25,10 @@ services:
     ports:
       - '3000:3000'
     environment:
-      DATABASE_URL: postgresql://postgres:password@weather-db:5432/postgres
+      DATABASE_URL: postgresql://postgres:password@weather-db:5432/weatherdb
     depends_on:
-      - weather-db
+      weather-db:
+        condition: service_healthy
 
 volumes:
   db:
