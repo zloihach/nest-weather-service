@@ -15,7 +15,7 @@ export class WeatherService {
         temperature: createWeatherDto.temperature,
         humidity: createWeatherDto.humidity,
         light: createWeatherDto.light,
-        pressure: createWeatherDto.pressure,
+        pressure: createWeatherDto.pressure ?? 0,
         date: createWeatherDto.date
           ? new Date(createWeatherDto.date)
           : new Date(),
