@@ -12,8 +12,13 @@ RUN npx prisma generate
 
 COPY . .
 
+COPY check-db.sh /usr/src/app/check-db.sh
+
+RUN chmod +x /usr/src/app/check-db.sh
+
 RUN npm run build
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start:prod"]
+# Запускаем скрипт проверки базы данных перед стартом приложения
+CMD ["/usr/src/app/check-db.sh"]
