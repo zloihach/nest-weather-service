@@ -24,7 +24,7 @@ export class CreateWeatherDto {
     description: 'The atmospheric pressure in hPa',
   })
   @IsNumber()
-  pressure: number;
+  pressure?: number;
 
   @ApiProperty({
     example: '2021-07-16T09:54:32.000Z',
