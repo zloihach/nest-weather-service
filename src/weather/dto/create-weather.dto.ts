@@ -24,6 +24,7 @@ export class CreateWeatherDto {
     description: 'The atmospheric pressure in hPa',
   })
   @IsNumber()
+  @IsOptional()
   pressure?: number;
 
   @ApiProperty({
